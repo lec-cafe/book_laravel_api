@@ -120,7 +120,7 @@ Route::post("/auth/login",function(){
     $password = request()->get("password");
     
     $user = \App\User::where("email",$email)->first();
-    if ($user && Hash::check($password, $user->password)) {        
+    if ($user && \Illuminate\Support\Facades\Hash::check($password, $user->password)) {        
         $token = str_random();
         $user->token = $token;
         $user->save();
